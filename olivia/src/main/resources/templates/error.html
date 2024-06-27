@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="#{title.error}"></title>
+</head>
+<body>
+<div th:if="${messError}">
+   <h2  th:text="#{title.error}"></h2>
+   <h3 th:text="#{${messError}}"></h3>
+</div>
+</body>
+</html>

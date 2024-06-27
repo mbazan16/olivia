@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{cuadro.nuevo.titulo}"></title>
+</head>
+<body>
+    <h1 th:text="#{cuadro.nuevo.titulo}"></h1>
+    
+   
+    <form th:action="@{/cuadros/guardar}" th:object="${cuadro}" method="post">
+        <label for="nombre" th:text="#{cuadro.nombre}"> </label><input type="text" th:field="*{nombre}" /><br/>
+        <label for="autor" th:text="#{cuadro.autor}"> </label><input type="text" th:field="*{autor}" /><br/>
+        <label for="tipo" th:text="#{cuadro.tipo}"></label>
+         <select th:field="*{tipo}">
+    <option th:each="tipoOpt : ${tiposCuadro}"
+            th:value="${tipoOpt}" th:text="${tipoOpt}"></option>
+</select><br/> 
+       
+        <button type="submit" th:text="#{cuadro.boton.guardar}"></button>
+    </form>
+    <a th:href="@{/cuadros}" th:text="#{cuadro.boton.volver}"></a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{cuadro.lista.titulo}"></title>
+</head>
+<body>
+    <h1 th:text="#{cuadro.lista.titulo}">></h1>
+    <table>
+        <tr>
+            
+            <th th:text="#{cuadro.nombre}"></th>
+            <th  th:text="#{cuadro.autor}"></th>
+            <th th:text="#{cuadro.tipo}"></th>
+        </tr>
+        <tr th:each="cuadro : ${cuadros}">
+            <td th:text="${cuadro.id}"></td>
+            <td th:text="${cuadro.nombre}"></td>
+             <td th:text="${cuadro.autor}"></td>
+            <td th:text="${cuadro.tipo}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/cuadros/nuevo}" th:text="#{cuadro.nuevo.titulo}"></a>
+</body>
+</html>
