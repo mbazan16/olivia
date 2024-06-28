@@ -16,34 +16,39 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value={"/","/cuadros"})
+@RequestMapping(value = { "/", "/cuadros" })
 
 public class CuadroController {
 	@Autowired
-    private CuadroService cuadroService;
-    
-    @GetMapping("/cuadros")
-    public String listarCuadros(Model model) throws MiServiceException {
-    	log.info("[listarCuadros]");
-    	log.debug("[listarCuadros]");
-        model.addAttribute("cuadros", cuadroService.findAll());
-        return "cuadros";
-    }
-	    @GetMapping("/nuevo")
-	    public String mostrarFormularioNuevo(Model model) {
-	        model.addAttribute("cuadro", new Cuadro());
-	        model.addAttribute("tiposCuadro", Cuadro.TipoCuadro.values());
-	        return "nuevoCuadrito";
-	    }
-	    
-	    @PostMapping("/guardar")
-	    public String guardarCuadro(@ModelAttribute Cuadro cuadro) throws MiServiceException {
-	    	log.info("[guardarCuadros]");
-	    	
-	        cuadroService.save(cuadro);
-	        return "redirect:/cuadros";
-	   
-    }
-    
+	private CuadroService cuadroService;
+
+	@GetMapping("/cuadros")
+	public String listarCuadros(Model model) throws Exception {
+		log.info("[listarCuadros]");
+		log.debug("[listarCuadros]");
+		model.addAttribute("cuadros", cuadroService.findAll());
+		return "cuadros";
+	}
+
+	@GetMapping("/nuevo")
+	public String mostrarFormularioNuevo(Model model) throws Exception {
+		log.info("[mostrarFormularioNuevo]");
+		model.addAttribute("cuadro", new Cuadro());
+		// Revisar otra forma
+		model.addAttribute("tiposCuadro", Cuadro.TipoCuadro.values());
+		return "nuevoCuadrito";
+	}
+
+	@PostMapping("/guardar")
+	public String guardarCuadro(@ModelAttribute Cuadro cuadro) throws Exception {
+		log.info("[guardarCuadros]");
+		
+		
+		
+
+		cuadroService.save(cuadro);
+		return "redirect:/cuadros";
+
+	}
 
 }

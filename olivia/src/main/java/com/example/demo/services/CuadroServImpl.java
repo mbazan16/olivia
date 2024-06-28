@@ -18,52 +18,52 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 
 public class CuadroServImpl implements CuadroService {
-	
-	
+
 	@Autowired
 	CuadroRepository cuadroRepository;
 
 	@Override
-	public List<Cuadro> findAll()throws MiServiceException {
+	public List<Cuadro> findAll() throws MiServiceException {
 		log.info("[findAll]");
-	List<Cuadro> cuadros;
-		
+		List<Cuadro> cuadros;
+
 		try {
-			 cuadros= cuadroRepository.findAll();
-			
-		}catch(Exception e) {
+			cuadros = cuadroRepository.findAll();
+
+		} catch (Exception e) {
 			log.error("Exception", e);
 			throw new MiServiceException(ErrorCode.ERROR_GENERAL);
 		}
 		return cuadros;
-		
-		
+
 	}
 
 	@Override
 	public Cuadro save(Cuadro cuadro) {
 		log.info("[save]");
+		//try-catch
 		return cuadroRepository.save(cuadro);
 	}
 
 	@Override
 	public Cuadro findById(Long id) throws MiServiceException {
 		log.info("[findById]");
-		
+
 		Cuadro cuadro;
 		try {
 			Optional<Cuadro> cuadroAux = cuadroRepository.findById(id);
-			if(!cuadroAux.isPresent()) throw new MiServiceException(ErrorCode.CUADRO_NOT_FOUND);
-			cuadro= cuadroAux.get();
-		}catch(MiServiceException mse) {
+			if (!cuadroAux.isPresent())
+				throw new MiServiceException(ErrorCode.CUADRO_NOT_FOUND);
+			cuadro = cuadroAux.get();
+		} catch (MiServiceException mse) {
 			log.error("MiServiceException", mse);
 			throw mse;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			log.error("Exception", e);
 			throw new MiServiceException(ErrorCode.ERROR_GENERAL);
 		}
 		return cuadro;
-		
+
 	}
 
 	@Override
